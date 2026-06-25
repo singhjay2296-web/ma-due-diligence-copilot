@@ -2,3 +2,4 @@ streamlit
 google-generativeai
 pdfplumber
 python-dotenv
+groq
