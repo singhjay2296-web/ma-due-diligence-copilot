@@ -1,6 +1,6 @@
 import streamlit as st
 from groq import Groq
-import pdfplumber
+import PyPDF2
 import os
 from dotenv import load_dotenv
 
@@ -115,9 +115,9 @@ def extract_pdf_text(file, max_chars=3000):
     if file is None:
         return "Not provided"
     text = ""
-    with pdfplumber.open(file) as pdf:
-        for page in pdf.pages:
-            text += page.extract_text() or ""
+    reader = PyPDF2.PdfReader(file)
+    for page in reader.pages:
+        text += page.extract_text() or ""
     return text[:max_chars]
 
 # ─── DCF CALCULATION ────────────────────────────────────────
